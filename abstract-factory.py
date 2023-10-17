@@ -78,9 +78,15 @@ class AbstractProductA(ABC):
 
     @abstractmethod
     def useful_function_a(self) -> str:
-        
         pass
 
+    def another_useful_function_a(self, collaborator: AbstractProductB) -> str:
+        """
+        The variant, Product A, is only able to work correctly with the variant,
+        Product B. Nevertheless, it accepts any instance of AbstractProductB as
+        an argument.
+        """
+        pass
 
 """
 Concrete Products are created by corresponding Concrete Factories.
@@ -91,6 +97,14 @@ class ConcreteProductA1(AbstractProductA):
     def useful_function_a(self) -> str:
         return "The result of the product A1."
 
+    def another_useful_function_a(self, collaborator: AbstractProductB) -> str:
+        """
+        The variant, Product A1, is only able to work correctly with the
+        variant, Product B1. Nevertheless, it accepts any instance of
+        AbstractProductB as an argument.
+        """
+        result = collaborator.useful_function_b()
+        return f"The result of the A1 collaborating with the ({result})"
 
 class ConcreteProductA2(AbstractProductA):
     def useful_function_a(self) -> str:
